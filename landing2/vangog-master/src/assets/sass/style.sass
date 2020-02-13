@@ -1,0 +1,624 @@
+@import 'fonts.sass'
+
+
+$button-color: #fab91e
+$button-hover-color: #d39500
+$button-text-color:  #080425
+$menu-active: #211d3b
+$menu-default: #080425
+$text-color: #080425
+$child-menu-hover: #37344f
+$icon-color: #f9b81e
+$default-hover: #d39500
+
+@mixin bg-url($bg-url)
+    background-image: url($bg-url)
+
+@mixin title-h2()
+    font-size: 52px
+    font-weight: 700
+    font-family: "Playfair_Reg"
+    text-align: center
+
+@mixin hover-img()
+    transition: 0.3s 
+    transform: scale(1.1)
+
+* 
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+    &:focus
+        outline: none
+
+a 
+    text-decoration: none
+
+ul,li 
+    list-style: none
+
+body 
+    font-family: 'ProximaNova_Reg'
+
+.container 
+    position: relative
+    margin: 0 5vw
+    /* box-shadow: 0px 0px 0px 1px rgba(153,153,153,1) */ /* Потом включить? border */ 
+.btn
+    margin: 20px 0
+    padding: 20px
+    color: $button-text-color
+    background-color: $button-color
+    font-family: "Gotham_Reg"
+    &:hover
+        transition: 0.2s
+        background-color: $default-hover
+.square
+    margin: 90px auto 10px
+    text-align: center
+    font-family: 'ProximaNova_Reg'
+    font-size: 12px
+    font-weight: 600
+    text-transform: uppercase
+    line-height: 20.18px
+    letter-spacing: 0.36px
+    span 
+        opacity: 0.6
+    .fa-square
+        color: $icon-color
+.head
+    position: fixed
+    width: 100%
+    z-index: 9999
+    &-wrap 
+        margin: 0 5vw
+    .slide-header
+        display: grid
+        width: 100%
+        margin: 0 auto
+        grid-template-areas: 'phone logo location'
+        grid-template-columns: 1fr 1fr 1fr
+        grid-template-rows: 1fr 
+        justify-items: center
+        align-items: center
+        color: #ffffff
+        font-size: 15px
+        font-weight: 500
+        line-height: 24px
+        font-family: 'Gotham_Reg'
+
+        .attention-text
+            font-family: 'Gotham_Medium'
+
+        .header-icon
+            position: absolute
+            bottom: 47%
+            left: 10%
+            color: $icon-color
+
+        .phone, .location /* Цвет текста переделать  */
+            position: relative
+            width: 100%
+            padding: 10% 20%
+
+        .phone
+            grid-area: phone
+            /* border-right: 1px solid #74777b */
+        .location
+            grid-area: location
+            /* border-left: 1px solid #74777b */
+
+        .logo
+            grid-area: logo
+            width: 102px
+            height: 102px
+            background-image: url('../../img/logo.png')
+            background-position: center center
+            background-size: contain
+            background-repeat: no-repeat
+    
+
+.main-menu
+    width: 100%
+
+.top-menu
+    display: grid
+    grid-template-columns: repeat(6, 1fr)
+    justify-content: space-around
+    align-items: center 
+    color: #ffffff
+
+    .sub-menu
+        position: absolute
+        top: 100%
+        left: 0
+        width: 100%
+        padding: 0
+        background-color: $menu-active
+        transform: translateY(-200px) scale(0)
+        li 
+            padding: 20px 5px
+            cursor: pointer
+            transition: 0.5s
+            &:hover
+                background-color: $child-menu-hover
+
+    .fa-chevron-left
+        margin-left: 5px
+        transition: 0.5s
+
+    &-item
+        position: relative
+        width: 100%
+        max-height: 118px
+        padding: 36px 15px
+        font-family: "ProximaNova_Semi"
+        font-size: 13px
+        font-weight: 400
+        line-height: 26px
+        text-transform: uppercase
+        text-align: center
+        cursor: pointer
+        background-color: $menu-default
+        transition: 0.5s
+        a 
+            color: #ffffff
+        &:hover
+            background-color: $menu-active
+        &:hover .fa-chevron-left
+            transform: rotate(-90deg)
+        &:hover  .sub-menu
+            transition: 0.5s
+            transform: translateY(0px) scale(1)
+
+.open-responsive-menu
+    position: fixed
+    display: none
+    margin: 25px
+    width: 30px
+    height: 30px
+    background: $menu-default
+    border-radius: 17px
+    z-index: 9999
+    button
+        width: 100%
+        height: 100%
+        color: #ffffff
+        background: transparent
+        border: none
+
+.responsive-menu
+    display: none
+    position: absolute
+    width: 30%
+    top: 0
+    left: 0
+    grid-template-columns: 1fr
+    grid-template-rows: auto
+    z-index: 99999
+    .close-item
+        height: 50px
+        width: 100%
+        background-color: $menu-default
+    .close
+        width: 50px
+        height: 50px
+        background-color: transparent
+        border: none
+        color: #ffffff
+        &:focus
+            outline: none
+    &-item 
+        position: relative
+        display: flex
+        height: 100px
+        justify-content: flex-start
+        width: 100%
+        background-color: $menu-default
+        a
+            display: flex
+            align-items: center
+            color: #ffffff
+            padding: 0 16%
+            display: flex
+            width: 100%
+            height: 100%
+        .fas
+            margin: 0 15px
+        &:hover
+            background-color: $menu-active
+        &:hover .sub-menu
+            display: grid
+            background-color: $menu-active
+        &:hover .fas
+            transition: 0.3s
+            transform: rotate(180deg)
+    .sub-menu
+        display: none
+        position: absolute
+        width: 100%
+        right: -100%
+        grid-template-columns: 1fr
+        grid-template-rows: auto
+        li 
+            height: 100px
+            background-color: $menu-active
+            &:hover
+                background-color: $child-menu-hover
+.main-slider 
+    .slick-dots
+        position: absolute
+        bottom: 5%
+        right: 13%
+        display: flex
+        button
+            width: 10px 
+            height: 10px 
+            overflow: hidden 
+            border: none 
+            color: transparent
+            border-radius: 10px 
+            background-color: #9f9e9f
+            cursor: pointer
+        li 
+            margin: 0 4px
+
+        .slick-active
+            button
+                background-color: $icon-color
+    .top-custom-btn
+        position: absolute
+        width: 20px
+        height: 20px
+        top: 45%
+        border: none
+        background-color: transparent
+        color: $icon-color
+        z-index: 999
+        cursor: pointer
+        font-size: 2em
+        &:focus
+            outline: none
+    .slick-next
+        right: 2%
+    .slick-prev
+        left: 2%
+.main-display
+    min-height: 969px
+    background-image: url('../../img/main-banner.png')
+    background-position: center center
+    background-repeat: no-repeat
+    background-size: cover
+    
+
+.previe-info
+    margin: 23% 10% 5%
+    color: #ffffff
+    h1 
+        font-family: "Playfair_Reg"
+        font-size: 52px
+        font-weight: 700
+        line-height: 63px
+    h2
+        font-family: "Gotham_Reg"
+        font-size: 18px
+        font-weight: 400
+        line-height: 28px
+
+    .top-btn-wrap
+        display: flex
+        justify-content: flex-start
+        .btn-order
+            margin-left: 20px
+        span
+            font-weight: 600
+            opacity: 0.6
+
+
+.reasons
+    color: $text-color
+    h2 
+        @include title-h2()
+
+    .reasons-list
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-wrap: wrap
+        margin: 50px auto
+        .list-item
+            max-width: 325px
+            margin: 10px 25px
+            text-align: center
+            h3 
+                margin: 38px auto 14px
+                font-family: "Playfair_Reg"
+                font-size: 16px
+                font-weight: 700
+
+            p 
+                font-size: 14px
+                font-weight: 400
+                line-height: 19.99px
+            .img
+                width: 77px
+                height: 77px
+                margin: 5px auto
+                background-position: center center
+                background-size: cover
+                background-position: center
+            .img-0
+                @include bg-url('../../img/icon_1.png')
+            .img-1
+                @include bg-url('../../img/icon_2.png')
+            .img-2
+                @include bg-url('../../img/icon_3.png')
+            .img-3
+                @include bg-url('../../img/icon_4.png')
+            .img-4
+                @include bg-url('../../img/icon_5.png')
+            
+.about_company
+    color: $text-color
+    font-family: "ProximaNova_Reg"
+    h2  
+        @include title-h2()
+    h3 
+        max-width: 900px
+        margin: 30px auto
+        font-family: "Playfair_italic"
+        font-style: italic
+        font-size: 22px
+        text-align: center
+    p 
+        max-width: 718px
+        margin: 5px auto
+        font-size: 18px
+        font-weight: 400
+        line-height: 28px
+        text-align: center
+        span 
+            display: inline-block
+            padding: 10px 0
+    .btn-about
+        display: block
+        max-width: 217px
+        margin: 20px auto
+        padding: 10px
+        text-align: center
+        font-size: 15px
+        font-weight: 600
+        line-height: 38px
+        span 
+            opacity: 0.6
+    
+.types-of-photos
+    h2 
+        @include title-h2()
+    .gallery-wrap
+        display: block
+        margin: 0 auto
+        max-width: 1250px
+    .gallery
+        display: flex
+        flex-wrap: wrap
+        justify-content: flex-start
+
+    .gallery-item
+        position: relative
+        max-width: 340px
+        max-height: 272px
+        margin: 30px
+        img 
+            width: 100%
+            height: 84%
+            &:hover
+                transition: 0.5s
+                @include hover-img()
+                z-index: 3
+        &-link
+            display: inline-block
+            margin: -4px 10% 0
+            width: 44px
+            height: 44px
+            background-color: $icon-color
+            .fa-arrow-right
+                margin: 37%
+                color: $text-color
+                opacity: 0.7
+            &:hover .fa-arrow-right
+                transition: 0.3s
+                transform: translateX(10px)
+        &-title 
+            position: absolute
+            z-index: 2
+            display: inline-block
+            width: 262px
+            padding: 12% 5vw 5% 3vw
+            right: 0
+            bottom: 0
+            background: #ffffff
+            text-align: left
+            a 
+                display: block
+                width: 100%
+                height: 100%
+                color: $text-color
+                font-size: 18px
+                font-weight: 700
+                line-height: 24px
+                &:hover
+                    transition: 0.3s
+                    color: $default-hover
+
+.rent
+    color: $text-color
+    h2 
+        @include title-h2()
+    .bottom-slider
+        max-width: 1250px
+        margin: 50px auto
+    .slide
+        position: relative
+        img 
+            &:hover
+                @include hover-img()
+    .slide-info
+        position: absolute 
+        display: block 
+        top: 50% 
+        right: 15% 
+        max-width: 520px 
+        height: 312px 
+        margin: -14% 0 0 0 
+        background-color: #ffffff 
+        h3 
+            padding: 40px 40px 20px
+            font-family: "Playfair_Reg"
+            font-size: 24px
+            font-weight: 700
+            line-height: 24px
+        &-text
+            display: block
+            margin: 17px auto 25px 25%
+            p 
+                opacity: 0.6 
+                font-size: 18px 
+                font-weight: 400 
+                line-height: 28px
+            &:before
+                content: ''
+                position: absolute
+                display: block
+                top: 37%
+                left: 10%
+                width: 55px
+                height: 1px
+                background-color: #949494
+        &-btn 
+            display: block
+            max-width: 217px
+            padding: 5px
+            text-align: center 
+            font-size: 15px 
+            font-weight: 700 
+            line-height: 38px 
+            span 
+                opacity: 0.6
+    .custom-btn
+        bottom: 23px
+        width: 44px
+        height: 44px
+        border: none
+        z-index: 999
+        background-color: $icon-color
+        cursor: pointer
+        &:focus
+            outline: none
+        &:hover
+            background-color: $default-hover
+        .fas
+            color: $text-color
+            opacity: 0.6
+    .slick-prev
+        position: absolute
+        left: 43.5%
+    .slick-next
+        position: relative
+        right: -47%
+footer 
+    .footer-info
+        display: grid 
+        max-width: 1250px
+        height: 141px
+        margin: 0 auto
+        grid-template-columns: 1fr 1fr 
+        grid-template-rows: 1fr
+        justify-items: center
+        align-items: center
+        font-family: 'Playfair_Reg'
+        background-color: $icon-color
+        font-size: 16px 
+        font-weight: 700 
+        line-height: 24px 
+        letter-spacing: 0.32px
+        &-block
+            display: flex 
+            width: 100% 
+            height: 100% 
+            align-items: center 
+            justify-content: space-around 
+            cursor: pointer
+            transition: 0.3s
+            &:hover
+                background-color: $default-hover
+            &:hover .fas
+                transition: 0.3s
+                transform: translateX(40px)
+            &-img 
+                display: inline-block
+                width: 74px
+                height: 74px
+                background-position: center center
+                background-size: contain
+                background-repeat: no-repeat
+            .fas
+                color: $text-color
+                opacity: 0.6
+            .icon-0
+                @include bg-url('../../img/icon.png')
+            .icon-1
+                @include bg-url('../../img/icon_2.1.png')
+            
+    .footer-contact-info
+        display: grid
+        max-width: 1250px
+        height: 150px
+        margin: 0 auto
+        grid-template-columns: 1fr 1fr 1fr
+        grid-template-rows: 1fr
+        justify-items: center
+        align-items: center
+        box-shadow: 0px 1px 0px 0px rgba(153,153,153,1)
+        .info-block
+            display: flex
+            align-items: center
+            color: $menu-default
+            font-family: "Gotham_Reg"
+            font-size: 13px
+            font-weight: 600
+            line-height: 24.08px
+            .fas
+                margin: 0 20px
+                color: $icon-color
+            span 
+                font-family: 'Gotham_Medium'
+        .mail
+            span 
+                border-bottom: 1px solid $icon-color
+.copyright
+    display: grid 
+    height: 96px
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 1fr
+    max-width: 1250px
+    margin: 0 auto
+    align-items: center
+    .name
+        margin: 0 19%
+    .company
+        position: relative
+        margin: 0 0 0 38%
+        &:before
+            content: ""
+            position: absolute
+            display: block
+            left: -45px
+            width: 30px
+            height: 30px
+            @include bg-url('../../img/tian.png')
+            background-size: contain
+            background-repeat: no-repeat
+            background-position: center center
+
+@import 'responsive.sass' 
